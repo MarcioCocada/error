@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Layout com Quadrado e Círculos</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-image: url('612 Sem Título_20240731161921.png'); /* Substitua pelo caminho da imagem de fundo */
+            background-size: cover;
+            background-position: center;
+            margin: 0;
+        }
+        .quadrado {
+            width: 200px; /* Aumenta o tamanho do quadrado */
+            height: 200px; /* Aumenta o tamanho do quadrado */
+            background-color: #000000;
+            border-radius: 15px; /* Bordas arredondadas */
+            margin-bottom: 70px; /* Ajusta a distância entre o quadrado e os círculos */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden; /* Para garantir que a imagem se mantenha dentro do quadrado */
+            box-shadow: 15px 15px 20px rgba(112, 66, 117, 0.5); /* Sombra inicial azul */
+            transition: box-shadow 0.3s ease, background-image 0.3s ease; /* Transição suave para sombra e imagem */
+        }
+        .quadrado img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Garante que a imagem cubra todo o quadrado */
+        }
+        .container {
+            display: flex;
+            justify-content: space-around;
+            width: 100%;
+            max-width: 800px; /* Ajuste a largura máxima do container se necessário */
+            position: relative;
+        }
+        .circulo {
+            width: 150px; /* Aumenta o tamanho das bolas */
+            height: 150px; /* Aumenta o tamanho das bolas */
+            border-radius: 50%;
+            overflow: hidden; /* Para garantir que a imagem se mantenha dentro do círculo */
+            transition: transform 0.3s ease;
+        }
+        .circulo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Garante que a imagem cubra todo o círculo */
+        }
+        .circulo:hover {
+            transform: scale(1.3); /* Aumenta um pouco mais a bola ao passar o mouse */
+        }
+        .youtube {
+            box-shadow: 15px 15px 20px rgba(255, 0, 0, 0.5); /* Sombra vermelha */
+        }
+        .sportifai {
+            box-shadow: 15px 15px 20px rgba(0, 255, 0, 0.5); /* Sombra verde */
+        }
+        .tiktok {
+            box-shadow: 15px 15px 20px rgba(0, 255, 255, 0.5); /* Sombra azul */
+        }
+        .bola-inferior {
+            position: absolute;
+            bottom: 20px; /* Ajusta a distância do fundo */
+            left: 20px; /* Ajusta a distância da borda esquerda */
+            width: 100px;
+            height: 100px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 15px 15px 20px rgba(255, 225, 0, 0.5); /* Sombra azul */
+        }
+        .bola-inferior img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    </style>
+</head>
+<body>
+    <div class="quadrado" onclick="trocarImagem()">
+        <img id="imagemQuadrado" src="anibal2.jpg" alt="Imagem no quadrado"> <!-- Imagem inicial do quadrado -->
+    </div>
+    <div class="container">
+        <a class="link" href="https://www.youtube.com/@Anibalofc" target="_blank">
+            <div class="circulo youtube">
+                <img src="Youtube_logo.png" alt="Imagem no círculo 1"> <!-- Substitua pelo caminho da sua imagem -->
+            </div>
+        </a>
+        <a class="link" href="https://open.spotify.com/intl-pt/artist/5f4anP5HHigLCDYynyffYM?si=S7_QrSwiTZ-VZWhDLgVOwQ&nd=1&dlsi=f14b5ae0f6304e7b" target="_blank">
+            <div class="circulo sportifai">
+                <img src="sportifailogay.png" alt="Imagem no círculo 2"> <!-- Substitua pelo caminho da sua imagem -->
+            </div>
+        </a>
+        <a class="link" href="https://www.tiktok.com/@anbalofc" target="_blank">
+            <div class="circulo tiktok">
+                <img src="tiktok3.webp" alt="Imagem no círculo 3"> <!-- Substitua pelo caminho da sua imagem -->
+            </div>
+        </a>
+    </div>
+    <a id="linkBola" class="link" target="_blank" onclick="escolherLinkAleatorio()">
+        <div class="bola-inferior">
+            <img src="CapaceteEgancho.jpeg" alt="Imagem na bola inferior"> <!-- Substitua pelo caminho da sua imagem -->
+        </div>
+    </a>
+
+    <script>
+        let estado = 0;
+
+        function trocarImagem() {
+            const quadrado = document.querySelector('.quadrado');
+            const imagemQuadrado = document.getElementById('imagemQuadrado');
+
+            if (estado === 0) {
+                imagemQuadrado.src = "anibal.jpeg"; // Substitua pelo caminho da nova imagem
+                quadrado.style.boxShadow = '15px 15px 20px rgba(255, 255, 255, 0.5)'; // Sombra vermelha
+                estado = 1;
+            } else {
+                imagemQuadrado.src = 'anibal2.jpg'; // Volta à imagem inicial
+                quadrado.style.boxShadow = '15px 15px 20px rgba(112, 66, 117, 0.5)'; // Sombra azul
+                estado = 0;
+            }
+        }
+
+        function escolherLinkAleatorio() {
+            const links = [
+                "https://www.youtube.com/watch?v=_-TZzrut0CE",
+                "https://www.youtube.com/watch?v=_pPTEHTRhko"
+            ];
+            const linkBola = document.getElementById('linkBola');
+            const linkAleatorio = links[Math.floor(Math.random() * links.length)];
+            linkBola.href = linkAleatorio;
+        }
+    </script>
+</body>
+</html>
